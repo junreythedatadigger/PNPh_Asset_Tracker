@@ -1,0 +1,13 @@
+<form method="POST" action="/update_status/{{ product.id }}">
+    <label>Status:</label>
+    <select name="status">
+        <option value="Available" {% if product.status == "Available" %}selected{% endif %}>Available</option>
+        <option value="Assigned" {% if product.status == "Assigned" %}selected{% endif %}>Assigned</option>
+        <option value="Unusable" {% if product.status == "Unusable" %}selected{% endif %}>Unusable</option>
+    </select>
+
+    <label>Assigned To (if applicable):</label>
+    <input type="text" name="assigned_to" value="{{ product.assigned_to }}">
+
+    <button type="submit">Update</button>
+</form>

@@ -1,0 +1,7 @@
+<h1>{{ category }} Inventory</h1>
+
+<ul>
+    {% for item in items %}
+        <li>{{ item.name }} - Status: {{ item.status }} - Assigned To: {{ item.assigned_to or "N/A" }}</li>
+    {% endfor %}
+</ul>
