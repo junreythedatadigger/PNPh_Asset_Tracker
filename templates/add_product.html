@@ -1,28 +1,74 @@
-<form method="POST" action="/add">
-    <label>Product Name:</label>
-    <input type="text" name="name" required>
+{% extends 'base.html' %}
 
-    <label>Category:</label>
-    <select name="category" required>
-        <option value="IT Device">IT Device</option>
-        <option value="Office Furniture">Office Furniture</option>
-    </select>
+{% block title %}Add Item - PNPh Inventory System{% endblock %}
 
-    <label>Status:</label>
-    <select name="status" required>
-        <option value="Available">Available</option>
-        <option value="Assigned">Assigned</option>
-        <option value="Unusable">Unusable</option>
-    </select>
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+<!--        <form method="POST" action="/add">-->
+<!--        <label>Product Name:</label>-->
+<!--        <input type="text" name="name" required>-->
 
-    <label>Assigned To (optional):</label>
-    <input type="text" name="assigned_to">
+<!--        <label>Category:</label>-->
+<!--        <select name="category" required>-->
+<!--            <option value="IT Device">IT Device</option>-->
+<!--            <option value="Office Furniture">Office Furniture</option>-->
+<!--        </select>-->
 
-    <label>Quantity:</label>
-    <input type="number" name="quantity" required>
+<!--        <label>Status:</label>-->
+<!--        <select name="status" required>-->
+<!--            <option value="Available">Available</option>-->
+<!--            <option value="Assigned">Assigned</option>-->
+<!--            <option value="Unusable">Unusable</option>-->
+<!--        </select>-->
 
-    <label>Price:</label>
-    <input type="number" name="price" step="0.01" required>
+<!--        <label>Assigned To (optional):</label>-->
+<!--        <input type="text" name="assigned_to">-->
 
-    <button type="submit">Add Product</button>
-</form>
+<!--        <label>Quantity:</label>-->
+<!--        <input type="number" name="quantity" required>-->
+
+<!--        <label>Price:</label>-->
+<!--        <input type="number" name="price" step="0.01" required>-->
+
+<!--        <button type="submit">Add Product</button>-->
+<!--    </form>-->
+
+    <form method="POST" action="/add">
+      <fieldset>
+        <legend>Add an Item</legend>
+        <div>
+          <label for="name" class="form-label mt-4">Product Name</label>
+          <input type="text" class="form-control" id="name" name="name" placeholder="Enter product name">
+        </div>
+        <div>
+          <label for="category" class="form-label mt-4">Category</label>
+          <select class="form-select" id="category" name="category">
+            <option>IT Device</option>
+            <option>Office Furniture</option>
+          </select>
+        </div>
+        <div>
+          <label for="status" class="form-label mt-4">Status</label>
+          <select class="form-select" id="status" name="status">
+            <option>Available</option>
+            <option>Assigned</option>
+            <option>Unusable</option>
+          </select>
+        </div>
+        <div>
+          <label for="assignedTo" class="form-label mt-4">Assigned To (optional)</label>
+          <input type="text" class="form-control" id="assignedTo" name="assignedTo" placeholder="Full name" autocomplete="off">
+        </div>
+        <div>
+          <label for="quantity" class="form-label mt-4">Quantity</label>
+          <input type="text" class="form-control" id="quantity" name="quantity" placeholder="0" autocomplete="off">
+        </div>
+        <div>
+          <label for="price" class="form-label mt-4">Price</label>
+          <input type="text" class="form-control" id="price" name="price" placeholder="0" autocomplete="off">
+        </div>
+        <button type="submit" class="btn btn-primary mt-4">Add Product</button>
+      </fieldset>
+    </form>
+</div>
+{% endblock %}

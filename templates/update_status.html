@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{url_for('static', filename='bootstrap.min.css')}}">
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+</head>
+
+<body>
 <form method="POST" action="/update_status/{{ product.id }}">
     <label>Status:</label>
     <select name="status">
@@ -11,3 +20,8 @@
 
     <button type="submit">Update</button>
 </form>
+
+</body>
+</html>
+
+

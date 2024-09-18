@@ -1,13 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Home Page</title>
-</head>
-<body>
-    <h1>Welcome to the Inventory System</h1>
-    <a href="{{ url_for('dashboard') }}">Dashboard</a>
-    <button onclick="location.href='{{ url_for('dashboard') }}'">Go to Dashboard</button>
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% block title %}Home - PNPh Inventory System{% endblock %}
+
+{% block content %}
+    <div class="d-flex justify-content-center align-items-center" style="height: 80vh;">
+      <div class="text-center">
+        <h1>Welcome to the PNPh Inventory System</h1>
+        <h3>A personal project built in Python and Flask</h3>
+      </div>
+    </div>
+{% endblock %}

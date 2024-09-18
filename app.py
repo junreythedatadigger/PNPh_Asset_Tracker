@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
+from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
 
@@ -92,4 +93,5 @@ def dashboard():
 
 
 if __name__ == '__main__':
+    Bootstrap(app)
     app.run(debug=True)

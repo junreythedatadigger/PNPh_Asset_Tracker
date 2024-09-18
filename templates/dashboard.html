@@ -1,10 +1,18 @@
-<h1>Inventory Dashboard</h1>
+{% extends 'base.html' %}
 
-<h2>Category Summary</h2>
-<p>Total IT Devices: {{ total_it_devices }}</p>
-<p>Total Office Furniture: {{ total_office_furniture }}</p>
+{% block title %}Dashboard - PNPh Inventory System{% endblock %}
 
-<h2>Status Summary</h2>
-<p>Available Items: {{ total_available }}</p>
-<p>Assigned Items: {{ total_assigned }}</p>
-<p>Unusable Items: {{ total_unusable }}</p>
+{% block content %}
+
+    <h1>Inventory Dashboard</h1>
+
+    <h2>Category Summary</h2>
+    <p>Total IT Devices: {{ total_it_devices }}</p>
+    <p>Total Office Furniture: {{ total_office_furniture }}</p>
+
+    <h2>Status Summary</h2>
+    <p>Available Items: {{ total_available }}</p>
+    <p>Assigned Items: {{ total_assigned }}</p>
+    <p>Unusable Items: {{ total_unusable }}</p>
+{% endblock %}
+
