@@ -3,41 +3,61 @@
 {% block title %}Add Item - PNPh Inventory System{% endblock %}
 
 {% block content %}
-<div class="d-flex justify-content-center align-items-center" style="height: 120vh;">
-   <form method="POST" action="/add">
+<div class="d-flex justify-content-center align-items-center" style="margin:50px">
+   <form method="POST" action="/add" class="w-100">
       <fieldset>
         <legend>Add an Item</legend>
-        <div>
-          <label for="name" class="form-label mt-4">Product Name</label>
-          <input type="text" class="form-control" id="name" name="name" placeholder="Enter product name">
+
+        <!-- Bootstrap Grid: 2 columns on larger screens, 1 column on mobile -->
+        <div class="row">
+          <!-- Product Name -->
+          <div class="col-md-6 mb-3">
+            <label for="name" class="form-label mt-4">Product Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Enter product name">
+          </div>
+
+          <!-- Category -->
+          <div class="col-md-6 mb-3">
+            <label for="category" class="form-label mt-4">Category</label>
+            <select class="form-select" id="category" name="category">
+              <option>IT Device</option>
+              <option>Office Furniture</option>
+            </select>
+          </div>
         </div>
-        <div>
-          <label for="category" class="form-label mt-4">Category</label>
-          <select class="form-select" id="category" name="category">
-            <option>IT Device</option>
-            <option>Office Furniture</option>
-          </select>
+
+        <div class="row">
+          <!-- Status -->
+          <div class="col-md-6 mb-3">
+            <label for="status" class="form-label mt-4">Status</label>
+            <select class="form-select" id="status" name="status">
+              <option>Available</option>
+              <option>Assigned</option>
+              <option>Unusable</option>
+            </select>
+          </div>
+
+          <!-- Assigned To -->
+          <div class="col-md-6 mb-3">
+            <label for="assigned_to" class="form-label mt-4">Assigned To (optional)</label>
+            <input type="text" class="form-control" id="assigned_to" name="assigned_to" placeholder="Full name" autocomplete="off">
+          </div>
         </div>
-        <div>
-          <label for="status" class="form-label mt-4">Status</label>
-          <select class="form-select" id="status" name="status">
-            <option>Available</option>
-            <option>Assigned</option>
-            <option>Unusable</option>
-          </select>
+
+        <div class="row">
+          <!-- Quantity -->
+          <div class="col-md-6 mb-3">
+            <label for="quantity" class="form-label mt-4">Quantity</label>
+            <input type="text" class="form-control" id="quantity" name="quantity" placeholder="0" autocomplete="off">
+          </div>
+
+          <!-- Price -->
+          <div class="col-md-6 mb-3">
+            <label for="price" class="form-label mt-4">Price</label>
+            <input type="text" class="form-control" id="price" name="price" placeholder="0" autocomplete="off">
+          </div>
         </div>
-        <div>
-          <label for="assigned_to" class="form-label mt-4">Assigned To (optional)</label>
-          <input type="text" class="form-control" id="assigned_to" name="assigned_to" placeholder="Full name" autocomplete="off">
-        </div>
-        <div>
-          <label for="quantity" class="form-label mt-4">Quantity</label>
-          <input type="text" class="form-control" id="quantity" name="quantity" placeholder="0" autocomplete="off">
-        </div>
-        <div>
-          <label for="price" class="form-label mt-4">Price</label>
-          <input type="text" class="form-control" id="price" name="price" placeholder="0" autocomplete="off">
-        </div>
+
         <button type="submit" class="btn btn-primary mt-4">Add Product</button>
       </fieldset>
     </form>
