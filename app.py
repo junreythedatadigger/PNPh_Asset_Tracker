@@ -36,8 +36,8 @@ with app.app_context():
 # Sample home route
 @app.route('/')
 def home():
-    # return "Welcome to the Inventory System"
     return render_template('home_page.html')
+
 
 @app.route('/add', methods=['GET', 'POST'])
 def add_product():
@@ -51,8 +51,15 @@ def add_product():
         new_product = Product(name=name, category=category, status=status, assigned_to=assigned_to, quantity=quantity, price=price)
         db.session.add(new_product)
         db.session.commit()
-        return redirect(url_for('home'))
+        return redirect(url_for('inventory'))
     return render_template('add_product.html')
+
+
+# filter and list items by category
+@app.route('/inventory/all')
+def inventory():
+    items = Product.query.all()
+    return render_template('inventory.html', items=items)
 
 
 # filter and list items by category
@@ -70,8 +77,25 @@ def update_status(id):
         product.status = request.form['status']
         product.assigned_to = request.form.get('assigned_to', None)
         db.session.commit()
-        return redirect(url_for('list_inventory', category=product.category))
+        return redirect(url_for('inventory'))
     return render_template('update_status.html', product=product)
+
+
+# delete an item
+@app.route('/delete_item/<int:id>', methods=['POST'])
+def delete_item(id):
+    # Fetch the item by its ID
+    item_to_delete = Product.query.get_or_404(id)
+
+    try:
+        db.session.delete(item_to_delete)  # Delete the item
+        db.session.commit()  # Commit the changes to the database
+        print('Item successfully deleted!', 'success')
+    except Exception as e:
+        db.session.rollback()  # Rollback if there's an error
+        print(f'Error deleting item: {str(e)}', 'danger')
+
+    return redirect(url_for('inventory'))  # Redirect to the home page or items list
 
 
 # display an overview of inventory statistics
