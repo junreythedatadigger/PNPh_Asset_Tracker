@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}Inventory - PNPh Inventory System{% endblock %}
+
+{% block content %}
+    <div class="d-flex justify-content-center align-items-center">
+      <div class="text-center">
+        <h1>Inventory</h1>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Asset Name</th>
+              <th scope="col">Category</th>
+              <th scope="col">Status</th>
+              <th scope="col">Assigned To</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Price</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in items %}
+            <tr class="table-dark">
+              <th scope="row">{{ item.name }}</th>
+              <td>{{ item.category }}</td>
+              <td>{{ item.status }}</td>
+              <td>{{ item.assigned_to or "N/A" }}</td>
+              <td>{{ item.quantity }}</td>
+              <td>{{ item.price }}</td>
+              <td>
+                <button type="button" class="btn btn-primary btn-sm" onclick="location.href='{{ url_for('update_status', id=item.id) }}'">Update</button>
+                <button type="submit" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal{{ item.id }}">Delete</button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal{{ item.id }}" tabindex="-1" aria-labelledby="exampleModalLabel{{ item.id }}" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel{{ item.id }}">Warning</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Are you sure you want to delete the item?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <form action="{{ url_for('delete_item', id=item.id) }}" method="POST" style="display:inline;">
+                                  <button type="submit" class="btn btn-primary">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+{% endblock %}
