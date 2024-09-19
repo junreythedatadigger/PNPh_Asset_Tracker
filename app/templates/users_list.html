@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}List of User - PNPh Asset Tracker{% endblock %}
+
+{% block content %}
+    <div class="d-flex justify-content-center align-items-center">
+      <div class="text-center">
+        <h1>List of Users</h1>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Full Name</th>
+              <th scope="col">Role</th>
+              <th scope="col">Position</th>
+              <th scope="col">Date Hired</th>
+              <th scope="col">Date Resigned</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for user in users %}
+            <tr class="table-dark">
+              <th scope="row">{{ user.name }}</th>
+              <td>{{ user.role }}</td>
+              <td>{{ user.position }}</td>
+              <td>{{ user.date_hired }}</td>
+              <td>{{ user.date_resigned }}</td>
+              <td>
+                <button type="button" class="btn btn-primary btn-sm" onclick="location.href='{{ url_for('main.update_status', id=user.id) }}'">Update</button>
+                <button type="submit" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal{{ user.id }}">Delete</button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal{{ user.id }}" tabindex="-1" aria-labelledby="exampleModalLabel{{ user.id }}" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel{{ user.id }}">Warning</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Are you sure you want to delete this user?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <form action="{{ url_for('main.delete_user', id=user.id) }}" method="POST" style="display:inline;">
+                                  <button type="submit" class="btn btn-primary">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="text-center text-bottom">
+        <button type="button" class="btn btn-primary" onclick="location.href='{{ url_for('main.add_user') }}'">Add a User</button>
+    </div>
+
+{% endblock %}

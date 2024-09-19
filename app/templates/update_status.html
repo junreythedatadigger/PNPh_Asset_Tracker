@@ -7,16 +7,16 @@
 </head>
 
 <body>
-<form method="POST" action="/update_status/{{ product.id }}">
+<form method="POST" action="/update_status/{{ asset.id }}">
     <label>Status:</label>
     <select name="status">
-        <option value="Available" {% if product.status == "Available" %}selected{% endif %}>Available</option>
-        <option value="Assigned" {% if product.status == "Assigned" %}selected{% endif %}>Assigned</option>
-        <option value="Unusable" {% if product.status == "Unusable" %}selected{% endif %}>Unusable</option>
+        <option value="Available" {% if asset.status == "Available" %}selected{% endif %}>Available</option>
+        <option value="Assigned" {% if asset.status == "Assigned" %}selected{% endif %}>Assigned</option>
+        <option value="Unusable" {% if asset.status == "Unusable" %}selected{% endif %}>Unusable</option>
     </select>
 
     <label>Assigned To (if applicable):</label>
-    <input type="text" name="assigned_to" value="{{ product.assigned_to }}">
+    <input type="text" name="assigned_to" value="{{ asset.assigned_to }}">
 
     <button type="submit">Update</button>
 </form>

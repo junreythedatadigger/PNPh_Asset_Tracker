@@ -5,8 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1c1c6b54-7fff-47eb-a17f-768c60c41b4f" name="Changes" comment="Implemented MVC structure">
+      <change afterPath="$PROJECT_DIR$/app/templates/add_asset.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/templates/users_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/PNPh_Inventory_System.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PNPh_Inventory_System.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/add_product.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/add_product.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/add_product.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/add_user.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/home_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/home_page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/inventory.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/assets_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/update_status.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/update_status.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/instance/inventory.db" beforeDir="false" afterPath="$PROJECT_DIR$/instance/inventory.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,16 +62,20 @@
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "DefaultHtmlFileTemplate": "HTML File",
+    "Python.__init__.executor": "Run",
     "Python.app.executor": "Run",
     "Python.config.executor": "Run",
+    "Python.controllers.executor": "Run",
+    "Python.models.executor": "Run",
     "Python.run.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "D:/Development/PycharmProjects/PNPh_Inventory_System/app"
+    "last_opened_file_path": "D:/Development/PycharmProjects/PNPh_Asset_Tracker/app/templates"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Development\PycharmProjects\PNPh_Asset_Tracker\app\templates" />
       <recent name="D:\Development\PycharmProjects\PNPh_Inventory_System\app" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
