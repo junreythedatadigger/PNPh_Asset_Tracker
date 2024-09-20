@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from .models import Asset, User
+from .models import Asset, User, Issuance
 from . import db
+import datetime
 
 main = Blueprint('main', __name__)
 
@@ -9,6 +10,29 @@ main = Blueprint('main', __name__)
 @main.route('/')
 def home():
     return render_template('home_page.html')
+
+# Add a new issuance
+@main.route('/add-issuance', methods=['GET', 'POST'])
+def add_issuance():
+    if request.method == 'POST':
+        asset_id = request.form['asset_id']
+        user_id = request.form['user_id']
+        # date_issued = datetime.UTC
+        date_issued = datetime.datetime.now()
+
+        new_issuance = Issuance(asset_id=asset_id, user_id=user_id, date_issued=date_issued)
+
+        try:
+            db.session.add(new_issuance)
+            db.session.commit()
+            return redirect(url_for('main.issuances_list'))
+        except Exception as e:
+            print(f"Error: {e}")
+            return "There was an issue adding the issuance."
+
+    assets = Asset.query.all()
+    users = User.query.all()
+    return render_template('add_issuance.html', assets=assets, users=users)
 
 
 # Add a new product
@@ -52,6 +76,12 @@ def add_user():
         return redirect(url_for('main.users_list'))
     return render_template('add_user.html')
 
+# List of issuances
+@main.route('/issuances-list')
+def issuances_list():
+    issuances = Issuance.query.all()
+    return render_template('issuances_list.html', issuances=issuances)
+
 
 # List of all assets
 @main.route('/assets-list')
@@ -83,6 +113,13 @@ def update_status(id):
         db.session.commit()
         return redirect(url_for('main.assets_list'))
     return render_template('update_status.html', asset=asset)
+
+@main.route('/delete-issuance/<int:id>', methods=['POST'])
+def delete_issuance(id):
+    issuance_to_delete = Issuance.query.get_or_404(id)
+    db.session.delete(issuance_to_delete)
+    db.session.commit()
+    return redirect(url_for('main.issuances_list'))
 
 
 # Delete an asset

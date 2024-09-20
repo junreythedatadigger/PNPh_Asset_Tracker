@@ -11,6 +11,7 @@ class Asset(db.Model):
     # purchase_date = db.Column(db.Date, nullable=True)  # Optional: track purchase dates
     purchase_date = db.Column(db.String(20), nullable=True)  # Optional: track purchase dates
     status = db.Column(db.String(50), nullable=False)  # Available, Unusable
+    issuances = db.relationship('Issuance', backref='asset', lazy=True)
 
 
 class User(db.Model):
@@ -22,6 +23,16 @@ class User(db.Model):
     date_resigned = db.Column(db.String(20), nullable=True)
     # date_hired = db.Column(db.Date, nullable=False)
     # date_resigned = db.Column(db.Date, nullable=True)
+    issuances = db.relationship('Issuance', backref='user', lazy=True)
+
+
+class Issuance(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    asset_id = db.Column(db.Integer, db.ForeignKey('asset.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    date_issued = db.Column(db.String(20), nullable=False)
+    # date_issued = db.Column(db.Date, nullable=False, default=datetime.utcnow)
+
 
     def __repr__(self):
         return f"<Asset {self.name}>"
