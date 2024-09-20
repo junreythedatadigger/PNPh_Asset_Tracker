@@ -4,6 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="1c1c6b54-7fff-47eb-a17f-768c60c41b4f" name="Changes" comment="Fixed asset and impelemented user.">
       <change afterPath="$PROJECT_DIR$/app/templates/add_issuance.html" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/templates/issuances_list.html" afterDir="false" />
@@ -12,6 +13,12 @@
       <change beforePath="$PROJECT_DIR$/app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/templates/users_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/users_list.html" afterDir="false" />
+=======
+    <list default="true" id="1c1c6b54-7fff-47eb-a17f-768c60c41b4f" name="Changes" comment="Implemented MVC structure">
+      <change beforePath="$PROJECT_DIR$/.idea/PNPh_Inventory_System.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PNPh_Inventory_System.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+>>>>>>> a5556b02b08e642e154813c0da3028dae7fdf654
       <change beforePath="$PROJECT_DIR$/instance/inventory.db" beforeDir="false" afterPath="$PROJECT_DIR$/instance/inventory.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -36,12 +43,12 @@
     &quot;assignee&quot;: &quot;junreythedatadigger&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/junreythedatadigger/PNPh_Inventory_System.git&quot;,
-    &quot;accountId&quot;: &quot;48cdbaa6-0618-4037-8d3d-eb9bce941401&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/junreythedatadigger/PNPh_Asset_Tracker.git",
+    "accountId": "3b947883-8c54-48b5-ac9d-5879158dc213"
   }
-}</component>
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -65,8 +72,12 @@
     "Python.run.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
+<<<<<<< HEAD
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "D:/Development/PycharmProjects/PNPh_Asset_Tracker/app/templates"
+=======
+    "last_opened_file_path": "D:/Development/PycharmProjects/PNPh_Asset_Tracker"
+>>>>>>> a5556b02b08e642e154813c0da3028dae7fdf654
   }
 }]]></component>
   <component name="RecentsManager">
