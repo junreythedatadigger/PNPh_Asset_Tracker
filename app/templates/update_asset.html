@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Item - PNPh Inventory System{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="margin:50px">
+   <form method="POST" action="/update_asset/{{ asset.id }}" class="w-100">
+      <fieldset>
+        <legend>Update an Asset</legend>
+
+        <!-- Bootstrap Grid: 2 columns on larger screens, 1 column on mobile -->
+        <div class="row">
+          <!-- Asset Name -->
+          <div class="col-md-6 mb-3">
+            <label for="asset_name" class="form-label mt-4">Asset Name</label>
+            <input type="text" class="form-control" id="asset_name" name="asset_name" placeholder="Enter asset name">
+          </div>
+
+          <!-- Category -->
+          <div class="col-md-6 mb-3">
+            <label for="category" class="form-label mt-4">Category</label>
+            <select class="form-select" id="category" name="category">
+              <option>IT Device</option>
+              <option>Office Furniture</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <!-- Model -->
+          <div class="col-md-6 mb-3">
+            <label for="model" class="form-label mt-4">Model</label>
+            <input type="text" class="form-control" id="model" name="model" placeholder="Enter asset model">
+          </div>
+
+          <!-- Serial Number -->
+          <div class="col-md-6 mb-3">
+            <label for="serial_number" class="form-label mt-4">Serial Number</label>
+            <input type="text" class="form-control" id="serial_number" name="serial_number" placeholder="Enter serial number">
+          </div>
+        </div>
+
+
+        <div class="row">
+          <!-- Price -->
+          <div class="col-md-6 mb-3">
+            <label for="price" class="form-label mt-4">Price</label>
+            <input type="number" class="form-control" id="price" name="price" placeholder="0" autocomplete="off">
+          </div>
+
+          <!-- Purchase Date -->
+          <div class="col-md-6 mb-3">
+            <label for="purchase_date" class="form-label mt-4">Purchase Date</label>
+            <input type="datetime-local" class="form-control" id="purchase_date" name="purchase_date" placeholder="Enter purchase date" autocomplete="off">
+          </div>
+        </div>
+
+        <div class="row">
+          <!-- Status -->
+          <div class="col-md-6 mb-3">
+            <label for="status" class="form-label mt-4">Status</label>
+            <select class="form-select" id="status" name="status">
+              <option>Available</option>
+              <option>Unusable</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary mt-4">Update Asset</button>
+      </fieldset>
+    </form>
+</div>
+{% endblock %}

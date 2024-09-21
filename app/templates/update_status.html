@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="{{url_for('static', filename='bootstrap.min.css')}}">
+<!--    <link rel="stylesheet" href="{{url_for('static', filename='bootstrap.min.css')}}">-->
+    <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.0/dist/darkly/bootstrap.min.css" rel="stylesheet">
     <meta charset="UTF-8">
     <title>Dashboard</title>
 </head>
 
 <body>
-<form method="POST" action="/update_status/{{ asset.id }}">
+<form method="POST" action="/update_asset/{{ asset.id }}">
     <label>Status:</label>
     <select name="status">
         <option value="Available" {% if asset.status == "Available" %}selected{% endif %}>Available</option>
@@ -15,8 +16,8 @@
         <option value="Unusable" {% if asset.status == "Unusable" %}selected{% endif %}>Unusable</option>
     </select>
 
-    <label>Assigned To (if applicable):</label>
-    <input type="text" name="assigned_to" value="{{ asset.assigned_to }}">
+    <label>Category:</label>
+    <input type="text" name="category" value="{{ asset.category }}">
 
     <button type="submit">Update</button>
 </form>

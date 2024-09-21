@@ -104,15 +104,22 @@ def list_inventory(category):
 
 
 # Update product status
-@main.route('/update_status/<int:id>', methods=['GET', 'POST'])
+@main.route('/update_asset/<int:id>', methods=['GET', 'POST'])
 def update_status(id):
+    print('update_status function called!')
     asset = Asset.query.get_or_404(id)
     if request.method == 'POST':
+        # asset.asset_name = request.form['asset_name']
+        # asset.category = request.form['category']
+        # asset.model = request.form['model']
+        # asset.serial_number = request.form['serial_number']
+        # asset.price = request.form['price']
+        # asset.purchase_date = request.form.get('purchase_date', None)
         asset.status = request.form['status']
-        asset.assigned_to = request.form.get('assigned_to', None)
         db.session.commit()
         return redirect(url_for('main.assets_list'))
-    return render_template('update_status.html', asset=asset)
+    return render_template('update_asset.html', asset=asset)
+
 
 @main.route('/delete-issuance/<int:id>', methods=['POST'])
 def delete_issuance(id):
