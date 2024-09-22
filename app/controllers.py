@@ -44,8 +44,14 @@ def add_asset():
         model = request.form['model']
         serial_number = request.form['serial_number']
         price = request.form['price']
-        purchase_date = request.form.get('purchase_date', None)
+        purchase_date = request.form['purchase_date']
+        # purchase_date = request.form.get('purchase_date', None)
         status = request.form['status']
+
+        # Convert purchase_date to a date object
+        if purchase_date:
+            purchase_date = datetime.datetime.strptime(purchase_date, '%Y-%m-%d').date()
+
         new_asset = Asset(asset_name=asset_name,
                           category=category,
                           model=model,

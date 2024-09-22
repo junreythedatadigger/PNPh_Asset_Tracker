@@ -8,8 +8,8 @@ class Asset(db.Model):
     model = db.Column(db.String(50), nullable=False)
     serial_number = db.Column(db.String(100), nullable=True)   # Serial number for IT Devices
     price = db.Column(db.Float, nullable=False)
-    # purchase_date = db.Column(db.Date, nullable=True)  # Optional: track purchase dates
-    purchase_date = db.Column(db.String(20), nullable=True)  # Optional: track purchase dates
+    purchase_date = db.Column(db.Date, nullable=True)  # Optional: track purchase dates
+    # purchase_date = db.Column(db.String(20), nullable=True)  # Optional: track purchase dates
     status = db.Column(db.String(50), nullable=False)  # Available, Unusable
     issuances = db.relationship('Issuance', backref='asset', lazy=True)
 
