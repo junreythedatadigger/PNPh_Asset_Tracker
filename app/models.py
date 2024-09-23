@@ -19,10 +19,11 @@ class User(db.Model):
     name = db.Column(db.String(50), nullable=False)
     role = db.Column(db.String(50), nullable=False)
     position = db.Column(db.String(50), nullable=False)
-    date_hired = db.Column(db.String(20), nullable=False)
-    date_resigned = db.Column(db.String(20), nullable=True)
-    # date_hired = db.Column(db.Date, nullable=False)
-    # date_resigned = db.Column(db.Date, nullable=True)
+    # date_hired = db.Column(db.String(20), nullable=False)
+    # date_resigned = db.Column(db.String(20), nullable=True)
+    date_hired = db.Column(db.Date, nullable=False)
+    is_currently_hired = db.Column(db.Boolean, nullable=False, default=True)
+    date_resigned = db.Column(db.Date, nullable=True)
     issuances = db.relationship('Issuance', backref='user', lazy=True)
 
 

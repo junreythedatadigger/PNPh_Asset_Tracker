@@ -6,6 +6,12 @@ import datetime
 main = Blueprint('main', __name__)
 
 
+# Covert date to a date object
+def format_date(date):
+    formated_date = datetime.datetime.strptime(date, '%Y-%m-%d').date()
+    return formated_date
+
+
 # Home route
 @main.route('/')
 def home():
@@ -50,7 +56,8 @@ def add_asset():
 
         # Convert purchase_date to a date object
         if purchase_date:
-            purchase_date = datetime.datetime.strptime(purchase_date, '%Y-%m-%d').date()
+            # purchase_date = datetime.datetime.strptime(purchase_date, '%Y-%m-%d').date()
+            purchase_date = format_date(purchase_date)
 
         new_asset = Asset(asset_name=asset_name,
                           category=category,
@@ -64,6 +71,7 @@ def add_asset():
         return redirect(url_for('main.assets_list'))
     return render_template('add_asset.html')
 
+
 @main.route('/add-user', methods=['GET', 'POST'])
 def add_user():
     if request.method == 'POST':
@@ -71,12 +79,32 @@ def add_user():
         role = request.form['role']
         position = request.form['position']
         date_hired = request.form['date_hired']
-        date_resigned = request.form['date_resigned']
+        is_currently_hired = request.form['is_currently_hired']
+        # date_resigned = request.form['date_resigned']
+        # date_resigned = request.form.get('date_resigned', "N/A")
+
+        # Convert date_hired to a date object
+        if date_hired:
+            date_hired = format_date(date_hired)
+
+        # Convert is_currently_hired to a boolean type
+        if is_currently_hired:
+            if is_currently_hired == "on":
+                is_currently_hired = True
+            else:
+                is_currently_hired = False
+
+        # Convert date_resigned to a date object
+        # if date_resigned != "N/A":
+        #     date_resigned = format_date(date_resigned)
+
         new_user = User(name=name,
                         role=role,
                         position=position,
                         date_hired=date_hired,
-                        date_resigned=date_resigned)
+                        is_currently_hired=is_currently_hired,
+                        # date_resigned=date_resigned
+                        )
         db.session.add(new_user)
         db.session.commit()
         return redirect(url_for('main.users_list'))

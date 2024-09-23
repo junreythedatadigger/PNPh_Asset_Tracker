@@ -13,6 +13,7 @@
               <th scope="col">Role</th>
               <th scope="col">Position</th>
               <th scope="col">Date Hired</th>
+              <th scope="col">Is Currently Hired</th>
               <th scope="col">Date Resigned</th>
               <th scope="col">Action</th>
             </tr>
@@ -24,7 +25,8 @@
               <td>{{ user.role }}</td>
               <td>{{ user.position }}</td>
               <td>{{ user.date_hired }}</td>
-              <td>{{ user.date_resigned }}</td>
+              <td>{{ user.is_currently_hired }}</td>
+              <td>{{ user.date_resigned or "N/A" }}</td>
               <td>
                 <button type="button" class="btn btn-primary btn-sm" onclick="location.href='{{ url_for('main.update_status', id=user.id) }}'">Update</button>
                 <button type="submit" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal{{ user.id }}">Delete</button>

@@ -36,16 +36,25 @@
           <!-- Date Hired -->
           <div class="col-md-6 mb-3">
             <label for="date_hired" class="form-label mt-4">Date Hired</label>
-            <input type="text" class="form-control" id="date_hired" name="date_hired" placeholder="Enter date hired">
+            <input type="date" class="form-control" id="date_hired" name="date_hired" placeholder="Enter date hired">
           </div>
         </div>
 
         <div class="row">
-          <!-- Date Resigned -->
+          <!-- Is Currently Hired -->
           <div class="col-md-6 mb-3">
-            <label for="date_resigned" class="form-label mt-4">Date Resigned</label>
-            <input type="text" class="form-control" id="date_resigned" name="date_resigned" placeholder="0" autocomplete="off">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="is_currently_hired" name="is_currently_hired" checked="">
+              <label class="form-check-label" for="is_currently_checked">Is Currently Hired</label>
+            </div>
           </div>
+
+
+          <!-- Date Resigned -->
+<!--          <div class="col-md-6 mb-3">-->
+<!--            <label for="date_resigned" class="form-label mt-4">Date Resigned</label>-->
+<!--            <input type="date" class="form-control" id="date_resigned" name="date_resigned" placeholder="0" autocomplete="off">-->
+<!--          </div>-->
         </div>
 
         <button type="submit" class="btn btn-primary mt-4">Add User</button>
