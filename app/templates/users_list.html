@@ -12,9 +12,9 @@
               <th scope="col">Full Name</th>
               <th scope="col">Role</th>
               <th scope="col">Position</th>
-              <th scope="col">Date Hired</th>
-              <th scope="col">Is Currently Hired</th>
-              <th scope="col">Date Resigned</th>
+              <th scope="col">Date Started</th>
+              <th scope="col">Has Ended</th>
+              <th scope="col">Date Ended</th>
               <th scope="col">Action</th>
             </tr>
           </thead>
@@ -24,11 +24,11 @@
               <th scope="row">{{ user.name }}</th>
               <td>{{ user.role }}</td>
               <td>{{ user.position }}</td>
-              <td>{{ user.date_hired }}</td>
-              <td>{{ user.is_currently_hired }}</td>
-              <td>{{ user.date_resigned or "N/A" }}</td>
+              <td>{{ user.date_started }}</td>
+              <td>{{ "Yes" if user.has_ended else "No" }}</td>
+              <td>{{ user.date_ended if user.has_ended else "N/A" }}</td>
               <td>
-                <button type="button" class="btn btn-primary btn-sm" onclick="location.href='{{ url_for('main.update_status', id=user.id) }}'">Update</button>
+                <button type="button" class="btn btn-primary btn-sm" onclick="location.href='{{ url_for('asset.update_status', id=user.id) }}'">Update</button>
                 <button type="submit" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal{{ user.id }}">Delete</button>
 
                 <!-- Modal -->
@@ -44,7 +44,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                <form action="{{ url_for('main.delete_user', id=user.id) }}" method="POST" style="display:inline;">
+                                <form action="{{ url_for('user.delete_user', id=user.id) }}" method="POST" style="display:inline;">
                                   <button type="submit" class="btn btn-primary">Delete</button>
                                 </form>
                             </div>
@@ -59,7 +59,7 @@
       </div>
     </div>
     <div class="text-center text-bottom">
-        <button type="button" class="btn btn-primary" onclick="location.href='{{ url_for('main.add_user') }}'">Add a User</button>
+        <button type="button" class="btn btn-primary" onclick="location.href='{{ url_for('user.add_user') }}'">Add a User</button>
     </div>
 
 {% endblock %}
