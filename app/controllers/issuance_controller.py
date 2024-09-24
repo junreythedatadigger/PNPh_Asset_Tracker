@@ -23,8 +23,11 @@ def add_issuance():
             print(f"Error: {e}")
             return "There was an issue adding the issuance."
 
-    assets = Asset.query.all()
-    users = User.query.all()
+    # assets = Asset.query.all()
+    # users = User.query.all()
+    assets = Asset.query.filter_by(status='Available')
+    users = User.query.filter_by(has_ended=False)
+
     return render_template('add_issuance.html', assets=assets, users=users)
 
 
