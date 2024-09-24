@@ -23,7 +23,7 @@
                 <td>{{ issuance.user.name }}</td>
                 <td>{{ issuance.date_issued }}</td>
                 <td>
-                    <button type="button" class="btn btn-primary btn-sm" onclick="location.href='{{ url_for('main.update_status', id=issuance.id) }}'">Update</button>
+                    <button type="button" class="btn btn-primary btn-sm" onclick="location.href='{{ url_for('issuance.update_status', id=issuance.id) }}'">Update</button>
                     <button type="submit" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal{{ issuance.id }}">Delete</button>
 
                     <!-- Modal -->
@@ -52,7 +52,7 @@
         </tbody>
     </table>
         <div class="text-center text-bottom">
-        <button type="button" class="btn btn-primary" onclick="location.href='{{ url_for('main.add_issuance') }}'">Add an Issuance</button>
+        <button type="button" class="btn btn-primary" onclick="location.href='{{ url_for('issuance.add_issuance') }}'">Add an Issuance</button>
     </div>
 
 </div>
