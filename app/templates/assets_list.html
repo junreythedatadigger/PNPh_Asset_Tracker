@@ -30,7 +30,7 @@
               <td>{{ item.purchase_date }}</td>
               <td>{{ item.status }}</td>
               <td>
-                <button type="button" class="btn btn-primary btn-sm" onclick="location.href='{{ url_for('main.update_status', id=item.id) }}'">Update</button>
+                <button type="button" class="btn btn-primary btn-sm" onclick="location.href='{{ url_for('asset.update_status', id=item.id) }}'">Update</button>
                 <button type="submit" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal{{ item.id }}">Delete</button>
 
                 <!-- Modal -->
@@ -46,7 +46,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                <form action="{{ url_for('main.delete_asset', id=item.id) }}" method="POST" style="display:inline;">
+                                <form action="{{ url_for('asset.delete_asset', id=item.id) }}" method="POST" style="display:inline;">
                                   <button type="submit" class="btn btn-primary">Delete</button>
                                 </form>
                             </div>
@@ -61,7 +61,7 @@
       </div>
     </div>
     <div class="text-center text-bottom">
-        <button type="button" class="btn btn-primary" onclick="location.href='{{ url_for('main.add_asset') }}'">Add an Asset</button>
+        <button type="button" class="btn btn-primary" onclick="location.href='{{ url_for('asset.add_asset') }}'">Add an Asset</button>
     </div>
 
 {% endblock %}
