@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block title %}Update User - PNPh Asset Tracker{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="margin:50px">
+   <form method="POST" action="/users/update-user/{{ user.id }}" class="w-100">
+      <fieldset>
+        <legend>Update User</legend>
+
+        <!-- Bootstrap Grid: 2 columns on larger screens, 1 column on mobile -->
+        <div class="row">
+          <!-- Full Name -->
+          <div class="col-md-6 mb-3">
+            <label for="name" class="form-label mt-4">Full Name</label>
+            <input type="text" class="form-control" id="name" name="name" value="{{ user.name }}" disabled>
+          </div>
+
+          <!-- Role -->
+          <div class="col-md-6 mb-3">
+            <label for="role" class="form-label mt-4">Role</label>
+            <select class="form-select" id="role" name="role" disabled>
+              <option value="Staff" {% if user.role == 'Staff' %}selected{% endif %} >Staff</option>
+              <option value="Student" {% if user.role == 'Student' %}selected{% endif %} >Student</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <!-- Position -->
+          <div class="col-md-6 mb-3">
+            <label for="position" class="form-label mt-4">Position</label>
+            <input type="text" class="form-control" id="position" name="position" value="{{ user.position }}" disabled>
+          </div>
+
+          <!-- Department -->
+          <div class="col-md-6 mb-3">
+            <label for="department" class="form-label mt-4">Department</label>
+            <select class="form-select" id="department" name="department" disabled>
+              <option value="Country Director" {% if user.department == 'Country Director' %}selected{% endif %} >Country Director</option>
+              <option value="Admin and Finance Dept." {% if user.department == 'Admin and Finance Dept.' %}selected{% endif %} >Admin and Finance Dept.</option>
+              <option value="External Relations Dept." {% if user.department == 'External Relations Dept.' %}selected{% endif %} >External Relations Dept.</option>
+              <option value="IT/Training Dept." {% if user.department == 'IT/Training Dept.' %}selected{% endif %} >IT/Training Dept.</option>
+              <option value="Selection/Education Dept." {% if user.department == 'Selection/Education Dept.' %}selected{% endif %} >Selection/Education Dept.</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <!-- Date Started -->
+          <div class="col-md-6 mb-3">
+            <label for="date_started" class="form-label mt-4">Date started</label>
+            <input type="date" class="form-control" id="date_started" name="date_started" value="{{ user.date_started }}" disabled>
+          </div>
+
+          <!-- Has Ended -->
+          <div class="col-md-2 mb-3">
+            <div class="form-check">
+              <input class="form-check-input mt-4" type="checkbox" value="yes" id="has_ended" name="has_ended">
+              <label class="form-check-label mt-4" for="has_ended">Has Ended</label>
+            </div>
+          </div>
+
+          <!-- Date Ended -->
+          <div class="col-md-4 mb-3">
+            <label for="date_ended" class="form-label mt-4">Date Ended</label>
+            <input type="date" class="form-control" id="date_ended" name="date_ended" placeholder="0" autocomplete="off" disabled>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-4">Update User</button>
+      </fieldset>
+    </form>
+</div>
+<script>
+        // Get references to the checkbox and date input
+    const hasEndedCheckbox = document.getElementById('has_ended');
+    const dateEndedInput = document.getElementById('date_ended');
+
+    // Add an event listener to toggle the disabled state of the date input
+    hasEndedCheckbox.addEventListener('change', function() {
+        if (this.checked) {
+            dateEndedInput.removeAttribute('disabled');
+        } else {
+            dateEndedInput.setAttribute('disabled', 'disabled');
+        }
+    });
+</script>
+{% endblock %}
