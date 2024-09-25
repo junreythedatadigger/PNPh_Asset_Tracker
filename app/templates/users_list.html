@@ -12,6 +12,7 @@
               <th scope="col">Full Name</th>
               <th scope="col">Role</th>
               <th scope="col">Position</th>
+              <th scope="col">Department</th>
               <th scope="col">Date Started</th>
               <th scope="col">Has Ended</th>
               <th scope="col">Date Ended</th>
@@ -24,11 +25,12 @@
               <th scope="row">{{ user.name }}</th>
               <td>{{ user.role }}</td>
               <td>{{ user.position }}</td>
+              <td>{{ user.department }}</td>
               <td>{{ user.date_started }}</td>
               <td>{{ "Yes" if user.has_ended else "No" }}</td>
               <td>{{ user.date_ended if user.has_ended else "N/A" }}</td>
               <td>
-                <button type="button" class="btn btn-primary btn-sm" onclick="location.href='{{ url_for('asset.update_asset', id=user.id) }}'">Update</button>
+                <button type="button" class="btn btn-primary btn-sm" onclick="location.href='{{ url_for('user.update_user', id=user.id) }}'">Update</button>
                 <button type="submit" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal{{ user.id }}">Delete</button>
 
                 <!-- Modal -->

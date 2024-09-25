@@ -18,6 +18,7 @@ class User(db.Model):
     name = db.Column(db.String(50), nullable=False)
     role = db.Column(db.String(50), nullable=False)
     position = db.Column(db.String(50), nullable=False)
+    department = db.Column(db.String(50), nullable=True)
     date_started = db.Column(db.Date, nullable=False)
     has_ended = db.Column(db.Boolean, nullable=False, default=True)
     date_ended = db.Column(db.Date, nullable=True)
