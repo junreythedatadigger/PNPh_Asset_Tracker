@@ -23,7 +23,7 @@
                 <td>{{ issuance.user.name }}</td>
                 <td>{{ issuance.date_issued }}</td>
                 <td>
-                    <button type="button" class="btn btn-primary btn-sm" onclick="location.href='{{ url_for('issuance.update_status', id=issuance.id) }}'">Update</button>
+                    <button type="button" class="btn btn-primary btn-sm" onclick="location.href='{{ url_for('asset.update_asset', id=issuance.id) }}'">Update</button>
                     <button type="submit" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal{{ issuance.id }}">Delete</button>
 
                     <!-- Modal -->
@@ -39,7 +39,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                    <form action="{{ url_for('main.delete_issuance', id=issuance.id) }}" method="POST" style="display:inline;">
+                                    <form action="{{ url_for('issuance.delete_issuance', id=issuance.id) }}" method="POST" style="display:inline;">
                                       <button type="submit" class="btn btn-primary">Delete</button>
                                     </form>
                                 </div>

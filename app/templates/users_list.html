@@ -28,7 +28,7 @@
               <td>{{ "Yes" if user.has_ended else "No" }}</td>
               <td>{{ user.date_ended if user.has_ended else "N/A" }}</td>
               <td>
-                <button type="button" class="btn btn-primary btn-sm" onclick="location.href='{{ url_for('asset.update_status', id=user.id) }}'">Update</button>
+                <button type="button" class="btn btn-primary btn-sm" onclick="location.href='{{ url_for('asset.update_asset', id=user.id) }}'">Update</button>
                 <button type="submit" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal{{ user.id }}">Delete</button>
 
                 <!-- Modal -->
