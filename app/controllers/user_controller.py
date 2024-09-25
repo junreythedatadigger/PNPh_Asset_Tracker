@@ -12,6 +12,7 @@ def add_user():
         name = request.form['name']
         role = request.form['role']
         position = request.form['position']
+        department = request.form['department']
         date_started = request.form['date_started']
         has_ended = request.form.get('has_ended')
         date_ended = request.form.get('date_ended')
@@ -29,6 +30,7 @@ def add_user():
         new_user = User(name=name,
                         role=role,
                         position=position,
+                        department=department,
                         date_started=date_started,
                         has_ended=has_ended,
                         date_ended=date_ended
@@ -44,6 +46,23 @@ def add_user():
 def users_list():
     users = User.query.all()
     return render_template('users_list.html', users=users)
+
+
+@user.route('/update-user/<int:id>', methods=['GET', 'POST'])
+def update_user(id):
+    user = User.query.get_or_404(id)
+    if request.method == 'POST':
+        user.has_ended = format_boolean(request.form.get('has_ended'))
+        user.date_ended = request.form.get('date_ended')
+
+        if user.has_ended:
+            user.date_ended = format_date(user.date_ended)
+        else:
+            user.date_ended = None
+
+        db.session.commit()
+        return redirect(url_for('user.users_list'))
+    return render_template('update_user.html', user=user)
 
 
 @user.route('/delete-user/<int:id>', methods=['POST'])
