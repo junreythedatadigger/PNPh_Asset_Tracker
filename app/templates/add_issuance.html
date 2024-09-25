@@ -6,24 +6,31 @@
 <div class="container">
     <h2>Add a New Issuance</h2>
     <form method="POST" action="/issuances/add-issuance">
-        <div class="mb-3">
-            <label for="asset_id" class="form-label">Select Asset</label>
-            <select class="form-select" id="asset_id" name="asset_id">
-                {% for asset in assets %}
-                    <option value="{{ asset.id }}">{{ asset.asset_name }}</option>
-                {% endfor %}
-            </select>
-        </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="asset_id" class="form-label">Select Asset</label>
+                <select class="form-select" id="asset_id" name="asset_id">
+                    {% for asset in assets %}
+                        <option value="{{ asset.id }}">{{ asset.asset_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
 
-        <div class="mb-3">
-            <label for="user_id" class="form-label">Select User</label>
-            <select class="form-select" id="user_id" name="user_id">
-                {% for user in users %}
-                    <option value="{{ user.id }}">{{ user.name }}</option>
-                {% endfor %}
-            </select>
+            <div class="col-md-6 mb-3">
+                <label for="user_id" class="form-label">Select User</label>
+                <select class="form-select" id="user_id" name="user_id">
+                    {% for user in users %}
+                        <option value="{{ user.id }}">{{ user.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
         </div>
-
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="date_issued" class="form-label mt-4">Date Issued</label>
+                <input type="date" class="form-control" id="date_issued" name="date_issued" autocomplete="off">
+            </div>
+        </div>
         <button type="submit" class="btn btn-primary">Add Issuance</button>
     </form>
 </div>

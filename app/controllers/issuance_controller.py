@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, redirect, url_for
 from ..models import Issuance, Asset, User
 from .. import db
 import datetime
+from ..utils import format_date
 
 issuance = Blueprint('issuance', __name__)
 
@@ -11,8 +12,8 @@ def add_issuance():
     if request.method == 'POST':
         asset_id = request.form['asset_id']
         user_id = request.form['user_id']
-        date_issued = datetime.datetime.now()
-
+        date_issued = format_date(request.form['date_issued'])
+        
         new_issuance = Issuance(asset_id=asset_id, user_id=user_id, date_issued=date_issued)
 
         try:
