@@ -37,7 +37,7 @@ def assets_list():
 
 
 @asset.route('/update-asset/<int:id>', methods=['GET', 'POST'])
-def update_status(id):
+def update_asset(id):
     asset = Asset.query.get_or_404(id)
     if request.method == 'POST':
         asset.status = request.form['status']

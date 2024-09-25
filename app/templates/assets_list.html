@@ -30,7 +30,7 @@
               <td>{{ item.purchase_date }}</td>
               <td>{{ item.status }}</td>
               <td>
-                <button type="button" class="btn btn-primary btn-sm" onclick="location.href='{{ url_for('asset.update_status', id=item.id) }}'">Update</button>
+                <button type="button" class="btn btn-primary btn-sm" onclick="location.href='{{ url_for('asset.update_asset', id=item.id) }}'">Update</button>
                 <button type="submit" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal{{ item.id }}">Delete</button>
 
                 <!-- Modal -->
