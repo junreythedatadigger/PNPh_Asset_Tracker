@@ -13,8 +13,13 @@ def add_issuance():
         asset_id = request.form['asset_id']
         user_id = request.form['user_id']
         date_issued = format_date(request.form['date_issued'])
+        date_returned = None
         
-        new_issuance = Issuance(asset_id=asset_id, user_id=user_id, date_issued=date_issued)
+        new_issuance = Issuance(asset_id=asset_id,
+                                user_id=user_id,
+                                date_issued=date_issued,
+                                date_returned=date_returned
+                                )
 
         try:
             db.session.add(new_issuance)
@@ -29,13 +34,26 @@ def add_issuance():
     assets = Asset.query.filter_by(status='Available')
     users = User.query.filter_by(has_ended=False)
 
-    return render_template('add_issuance.html', assets=assets, users=users)
+    return render_template('issuances/add_issuance.html', assets=assets, users=users)
 
 
 @issuance.route('/issuances-list')
 def issuances_list():
     issuances = Issuance.query.all()
-    return render_template('issuances_list.html', issuances=issuances)
+    return render_template('issuances/issuances_list.html', issuances=issuances)
+
+
+@issuance.route('/update-issuance/<int:id>', methods=['GET', 'POST'])
+def update_issuance(id):
+    issuance = Issuance.query.get_or_404(id)
+    print(issuance.date_issued)
+    if request.method == 'POST':
+        issuance.date_returned = format_date(request.form['date_returned'])
+        print(issuance.date_returned)
+        db.session.commit()
+        return redirect(url_for('issuance.issuances_list'))
+
+    return render_template('issuances/update_issuance.html', issuance=issuance)
 
 
 @issuance.route('/delete-issuance/<int:id>', methods=['POST'])

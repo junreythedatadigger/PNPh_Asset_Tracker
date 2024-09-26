@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %} Issuance{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Update Issuance</h2>
+    <form method="POST" action="/issuances/update-issuance/{{ issuance.id }}">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="asset_id" class="form-label">Select Asset</label>
+                <select class="form-select" id="asset_id" name="asset_id" disabled>
+                    <option>{{ issuance.asset.asset_name }}</option>
+                </select>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label for="user_id" class="form-label">Select User</label>
+                <select class="form-select" id="user_id" name="user_id" disabled>
+                    <option>{{ issuance.user.name }}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="date_issued" class="form-label mt-4">Date Issued</label>
+                <input type="date" class="form-control" id="date_issued" name="date_issued" value="{{ issuance.date_issued }}" disabled>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="date_returned" class="form-label mt-4">Date Returned</label>
+                <input type="date" class="form-control" id="date_returned" name="date_returned" autocomplete="off">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Issuance</button>
+    </form>
+</div>
+{% endblock %}

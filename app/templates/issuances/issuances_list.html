@@ -8,22 +8,22 @@
     <table class="table table-hover">
         <thead>
             <tr>
-                <th>Issuance ID</th>
                 <th>Asset Name</th>
-                <th>User Name</th>
+                <th>Issued To</th>
                 <th>Date Issued</th>
+                <th>Date Returned</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             {% for issuance in issuances %}
             <tr>
-                <td>{{ issuance.id }}</td>
                 <td>{{ issuance.asset.asset_name }}</td>
                 <td>{{ issuance.user.name }}</td>
                 <td>{{ issuance.date_issued }}</td>
+                <td>{{ issuance.date_returned }}</td>
                 <td>
-                    <button type="button" class="btn btn-primary btn-sm" onclick="location.href='{{ url_for('asset.update_asset', id=issuance.id) }}'">Update</button>
+                    <button type="button" class="btn btn-primary btn-sm" onclick="location.href='{{ url_for('issuance.update_issuance', id=issuance.id) }}'">Update</button>
                     <button type="submit" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal{{ issuance.id }}">Delete</button>
 
                     <!-- Modal -->

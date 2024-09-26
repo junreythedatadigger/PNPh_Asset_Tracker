@@ -29,8 +29,9 @@ class Issuance(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     asset_id = db.Column(db.Integer, db.ForeignKey('asset.id'), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    date_issued = db.Column(db.String(20), nullable=False)
-    # date_issued = db.Column(db.Date, nullable=False, default=datetime.utcnow)
+    # date_issued = db.Column(db.String(20), nullable=False)
+    date_issued = db.Column(db.Date, nullable=False)
+    date_returned = db.Column(db.Date, nullable=True)
 
 
     def __repr__(self):
