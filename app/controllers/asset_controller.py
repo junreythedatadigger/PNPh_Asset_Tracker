@@ -27,13 +27,13 @@ def add_asset():
         db.session.commit()
         return redirect(url_for('asset.assets_list'))
 
-    return render_template('add_asset.html')
+    return render_template('assets/add_asset.html')
 
 
 @asset.route('/assets-list')
 def assets_list():
     items = Asset.query.all()
-    return render_template('assets_list.html', items=items)
+    return render_template('assets/assets_list.html', items=items)
 
 
 @asset.route('/update-asset/<int:id>', methods=['GET', 'POST'])
@@ -43,7 +43,7 @@ def update_asset(id):
         asset.status = request.form['status']
         db.session.commit()
         return redirect(url_for('asset.assets_list'))
-    return render_template('update_asset.html', asset=asset)
+    return render_template('assets/update_asset.html', asset=asset)
 
 
 @asset.route('/delete-asset/<int:id>', methods=['POST'])

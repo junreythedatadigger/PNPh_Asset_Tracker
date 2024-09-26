@@ -39,13 +39,13 @@ def add_user():
         db.session.commit()
         return redirect(url_for('user.users_list'))
 
-    return render_template('add_user.html')
+    return render_template('users/add_user.html')
 
 
 @user.route('/users-list')
 def users_list():
     users = User.query.all()
-    return render_template('users_list.html', users=users)
+    return render_template('users/users_list.html', users=users)
 
 
 @user.route('/update-user/<int:id>', methods=['GET', 'POST'])
@@ -62,7 +62,7 @@ def update_user(id):
 
         db.session.commit()
         return redirect(url_for('user.users_list'))
-    return render_template('update_user.html', user=user)
+    return render_template('users/update_user.html', user=user)
 
 
 @user.route('/delete-user/<int:id>', methods=['POST'])

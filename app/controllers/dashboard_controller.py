@@ -4,9 +4,9 @@ from ..models import Asset
 dashboard = Blueprint('dashboard', __name__)
 
 
-@dashboard.route('/')
-def home():
-    return render_template('home_page.html')
+# @dashboard.route('/')
+# def home():
+#     return render_template('home_page.html')
 
 
 @dashboard.route('/dashboard')
@@ -17,7 +17,7 @@ def dashboard_view():
     total_assigned = Asset.query.filter_by(status='Assigned').count()
     total_unusable = Asset.query.filter_by(status='Unusable').count()
 
-    return render_template('dashboard.html',
+    return render_template('dashboards/dashboard.html',
                            total_it_devices=total_it_devices,
                            total_office_furniture=total_office_furniture,
                            total_available=total_available,
