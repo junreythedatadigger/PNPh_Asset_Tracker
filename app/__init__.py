@@ -21,12 +21,14 @@ def create_app():
     # app.register_blueprint(main_blueprint)
 
     # Import the controllers
+    from .controllers.home_controller import home
     from .controllers.asset_controller import asset
     from .controllers.issuance_controller import issuance
     from .controllers.user_controller import user
     from .controllers.dashboard_controller import dashboard
 
     # Register Blueprints
+    app.register_blueprint(home, url_prefix='/home')
     app.register_blueprint(asset, url_prefix='/assets')
     app.register_blueprint(issuance, url_prefix='/issuances')
     app.register_blueprint(user, url_prefix='/users')
