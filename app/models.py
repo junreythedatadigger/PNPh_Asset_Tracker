@@ -22,6 +22,7 @@ class User(db.Model):
     date_started = db.Column(db.Date, nullable=False)
     has_ended = db.Column(db.Boolean, nullable=False, default=True)
     date_ended = db.Column(db.Date, nullable=True)
+    count_asset_assigned = db.Column(db.Integer, nullable=False, default=0)
     issuances = db.relationship('Issuance', backref='user', lazy=True)
 
 

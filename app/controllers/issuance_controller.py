@@ -18,6 +18,10 @@ def add_issuance():
         # Update asset status to assigned
         asset = Asset.query.get_or_404(asset_id)
         asset.status = "Assigned"
+
+        # Update the number of assets assigned to user by increasing count
+        user = User.query.get_or_404(user_id)
+        user.count_asset_assigned += 1
         
         new_issuance = Issuance(asset_id=asset_id,
                                 user_id=user_id,
@@ -56,6 +60,11 @@ def update_issuance(id):
         # Update asset status to available upon returning
         asset = Asset.query.get_or_404(issuance.asset.id)
         asset.status = 'Available'
+
+        # Update the number of assets assigned to user by decreasing count
+        user = User.query.get_or_404(issuance.user.id)
+        user.count_asset_assigned -= 1
+
         db.session.commit()
         return redirect(url_for('issuance.issuances_list'))
 
@@ -69,6 +78,10 @@ def delete_issuance(id):
     # Update asset status to available upon deleting
     asset = Asset.query.get_or_404(issuance_to_delete.asset.id)
     asset.status = 'Available'
+
+    # Update the number of assets assigned to user by decreasing count upon deleting
+    user = User.query.get_or_404(issuance_to_delete.user.id)
+    user.count_asset_assigned -= 1
 
     db.session.delete(issuance_to_delete)
     db.session.commit()

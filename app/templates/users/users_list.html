@@ -14,7 +14,8 @@
               <th scope="col">Position</th>
               <th scope="col">Department</th>
               <th scope="col">Date Started</th>
-              <th scope="col">Has Ended</th>
+<!--              <th scope="col">Has Ended</th>-->
+              <th scope="col"># of Assigned Assets</th>
               <th scope="col">Date Ended</th>
               <th scope="col">Action</th>
             </tr>
@@ -27,11 +28,12 @@
               <td>{{ user.position }}</td>
               <td>{{ user.department }}</td>
               <td>{{ user.date_started }}</td>
-              <td>{{ "Yes" if user.has_ended else "No" }}</td>
+              <td>{{ user.count_asset_assigned }}</td>
+<!--              <td>{{ "Yes" if user.has_ended else "No" }}</td>-->
               <td>{{ user.date_ended if user.has_ended else "N/A" }}</td>
               <td>
-                <button type="button" class="btn btn-primary btn-sm" onclick="location.href='{{ url_for('user.update_user', id=user.id) }}'">Update</button>
-                <button type="submit" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal{{ user.id }}">Delete</button>
+                <button type="button" class="btn btn-primary btn-sm" onclick="location.href='{{ url_for('user.update_user', id=user.id) }}'" {% if user.date_ended != None or user.count_asset_assigned != 0 %}disabled{% endif %}>Update</button>
+                <button type="submit" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal{{ user.id }}" {% if user.date_ended != None or user.count_asset_assigned != 0 %}disabled{% endif %}>Delete</button>
 
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal{{ user.id }}" tabindex="-1" aria-labelledby="exampleModalLabel{{ user.id }}" aria-hidden="true">
