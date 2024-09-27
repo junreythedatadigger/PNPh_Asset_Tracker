@@ -1,11 +1,10 @@
-{% extends 'base.html' %}
+{% extends 'common/table_views.html' %}
 
 {% block title %}Inventory - PNPh Inventory System{% endblock %}
 
 {% block content %}
-    <div class="d-flex justify-content-center align-items-center">
-      <div class="text-center">
-        <h1>List of Assets</h1>
+    <div class="container">
+        <h2 class="title-margins">List of Assets</h2>
         <table class="table table-hover">
           <thead>
             <tr>
@@ -61,7 +60,7 @@
           </tbody>
         </table>
       </div>
-    </div>
+<!--    </div>-->
     <div class="text-center text-bottom">
         <button type="button" class="btn btn-primary" onclick="location.href='{{ url_for('asset.add_asset') }}'">Add an Asset</button>
     </div>
