@@ -5,6 +5,7 @@ class Asset(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     asset_name = db.Column(db.String(100), nullable=False)
     category = db.Column(db.String(50), nullable=False)  # IT device or Office furniture
+    type = db.Column(db.String(50), nullable=False)
     model = db.Column(db.String(50), nullable=False)
     serial_number = db.Column(db.String(100), nullable=True)   # Serial number for IT Devices
     price = db.Column(db.Float, nullable=False)

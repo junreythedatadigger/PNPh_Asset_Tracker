@@ -11,18 +11,24 @@ def add_asset():
     if request.method == 'POST':
         asset_name = request.form['asset_name']
         category = request.form['category']
+        type = request.form['type']
         model = request.form['model']
         serial_number = request.form['serial_number']
         price = request.form['price']
         purchase_date = request.form['purchase_date']
-        # status = request.form['status']
         status = 'Available' # default value for status
 
         if purchase_date:
             purchase_date = format_date(purchase_date)
 
-        new_asset = Asset(asset_name=asset_name, category=category, model=model, serial_number=serial_number,
-                          price=price, purchase_date=purchase_date, status=status)
+        new_asset = Asset(asset_name=asset_name,
+                          category=category,
+                          type=type,
+                          model=model,
+                          serial_number=serial_number,
+                          price=price,
+                          purchase_date=purchase_date,
+                          status=status)
 
         db.session.add(new_asset)
         db.session.commit()
