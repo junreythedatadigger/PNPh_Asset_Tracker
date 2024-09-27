@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from ..models import User
 from .. import db
-from ..utils import format_date, format_boolean
+from ..utils import format_date
 
 user = Blueprint('user', __name__)
 
@@ -13,26 +13,14 @@ def add_user():
         role = request.form['role']
         position = request.form['position']
         department = request.form['department']
-        date_started = request.form['date_started']
-        has_ended = request.form.get('has_ended')
-        date_ended = request.form.get('date_ended')
-
-        if date_started:
-            date_started = format_date(date_started)
-
-        has_ended = format_boolean(has_ended)
-
-        if has_ended:
-            date_ended = format_date(date_ended)
-        else:
-            date_ended = None
+        date_started = format_date(request.form.get('date_started'))
+        date_ended = None
 
         new_user = User(name=name,
                         role=role,
                         position=position,
                         department=department,
                         date_started=date_started,
-                        has_ended=has_ended,
                         date_ended=date_ended
                         )
         db.session.add(new_user)
@@ -52,13 +40,7 @@ def users_list():
 def update_user(id):
     user = User.query.get_or_404(id)
     if request.method == 'POST':
-        user.has_ended = format_boolean(request.form.get('has_ended'))
-        user.date_ended = request.form.get('date_ended')
-
-        if user.has_ended:
-            user.date_ended = format_date(user.date_ended)
-        else:
-            user.date_ended = None
+        user.date_ended = format_date(request.form.get('date_ended'))
 
         db.session.commit()
         return redirect(url_for('user.users_list'))

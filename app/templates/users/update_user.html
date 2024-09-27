@@ -53,18 +53,10 @@
             <input type="date" class="form-control" id="date_started" name="date_started" value="{{ user.date_started }}" disabled>
           </div>
 
-          <!-- Has Ended -->
-          <div class="col-md-2 mb-3">
-            <div class="form-check">
-              <input class="form-check-input mt-4" type="checkbox" value="yes" id="has_ended" name="has_ended">
-              <label class="form-check-label mt-4" for="has_ended">Has Ended</label>
-            </div>
-          </div>
-
           <!-- Date Ended -->
           <div class="col-md-4 mb-3">
             <label for="date_ended" class="form-label mt-4">Date Ended</label>
-            <input type="date" class="form-control" id="date_ended" name="date_ended" placeholder="0" autocomplete="off" disabled>
+            <input type="date" class="form-control" id="date_ended" name="date_ended" placeholder="0" autocomplete="off">
           </div>
         </div>
 
@@ -72,18 +64,4 @@
       </fieldset>
     </form>
 </div>
-<script>
-        // Get references to the checkbox and date input
-    const hasEndedCheckbox = document.getElementById('has_ended');
-    const dateEndedInput = document.getElementById('date_ended');
-
-    // Add an event listener to toggle the disabled state of the date input
-    hasEndedCheckbox.addEventListener('change', function() {
-        if (this.checked) {
-            dateEndedInput.removeAttribute('disabled');
-        } else {
-            dateEndedInput.setAttribute('disabled', 'disabled');
-        }
-    });
-</script>
 {% endblock %}
