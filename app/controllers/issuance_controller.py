@@ -65,6 +65,11 @@ def update_issuance(id):
 @issuance.route('/delete-issuance/<int:id>', methods=['POST'])
 def delete_issuance(id):
     issuance_to_delete = Issuance.query.get_or_404(id)
+
+    # Update asset status to available upon deleting
+    asset = Asset.query.get_or_404(issuance_to_delete.asset.id)
+    asset.status = 'Available'
+
     db.session.delete(issuance_to_delete)
     db.session.commit()
     return redirect(url_for('issuance.issuances_list'))
