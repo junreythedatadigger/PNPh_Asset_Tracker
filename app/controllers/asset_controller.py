@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for# from ..models import Asset
+from flask import Blueprint, render_template, request, redirect, url_for
 from ..models import Asset
 from .. import db
 from ..utils import format_date
@@ -15,7 +15,8 @@ def add_asset():
         serial_number = request.form['serial_number']
         price = request.form['price']
         purchase_date = request.form['purchase_date']
-        status = request.form['status']
+        # status = request.form['status']
+        status = 'Available' # default value for status
 
         if purchase_date:
             purchase_date = format_date(purchase_date)
