@@ -14,6 +14,10 @@ def add_issuance():
         user_id = request.form['user_id']
         date_issued = format_date(request.form['date_issued'])
         date_returned = None
+
+        # Update asset status to assigned
+        asset = Asset.query.get_or_404(asset_id)
+        asset.status = "Assigned"
         
         new_issuance = Issuance(asset_id=asset_id,
                                 user_id=user_id,
@@ -46,10 +50,12 @@ def issuances_list():
 @issuance.route('/update-issuance/<int:id>', methods=['GET', 'POST'])
 def update_issuance(id):
     issuance = Issuance.query.get_or_404(id)
-    print(issuance.date_issued)
     if request.method == 'POST':
         issuance.date_returned = format_date(request.form['date_returned'])
-        print(issuance.date_returned)
+
+        # Update asset status to available upon returning
+        asset = Asset.query.get_or_404(issuance.asset.id)
+        asset.status = 'Available'
         db.session.commit()
         return redirect(url_for('issuance.issuances_list'))
 

@@ -32,8 +32,8 @@ def add_asset():
 
 @asset.route('/assets-list')
 def assets_list():
-    items = Asset.query.all()
-    return render_template('assets/assets_list.html', items=items)
+    assets = Asset.query.all()
+    return render_template('assets/assets_list.html', assets=assets)
 
 
 @asset.route('/update-asset/<int:id>', methods=['GET', 'POST'])
