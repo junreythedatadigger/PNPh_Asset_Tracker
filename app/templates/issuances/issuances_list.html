@@ -23,8 +23,8 @@
                 <td>{{ issuance.date_issued }}</td>
                 <td>{{ issuance.date_returned }}</td>
                 <td>
-                    <button type="button" class="btn btn-primary btn-sm" onclick="location.href='{{ url_for('issuance.update_issuance', id=issuance.id) }}'" {% if issuance.date_returned != None %}disabled{% endif %} >Update</button>
-                    <button type="submit" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal{{ issuance.id }}" {% if issuance.date_returned != None %}disabled{% endif %}>Delete</button>
+                    <button type="button" class="btn btn-primary btn-sm" onclick="location.href='{{ url_for('issuance.update_issuance', id=issuance.id) }}'" {% if issuance.date_returned != None %}disabled{% endif %} >Return the Asset</button>
+                    <button type="submit" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal{{ issuance.id }}" {% if issuance.date_returned != None %}disabled{% endif %}>Delete Issuance</button>
 
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModal{{ issuance.id }}" tabindex="-1" aria-labelledby="exampleModalLabel{{ issuance.id }}" aria-hidden="true">

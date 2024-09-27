@@ -32,8 +32,8 @@
               <td>{{ asset.purchase_date }}</td>
               <td>{{ asset.status }}</td>
               <td>
-                <button type="button" class="btn btn-primary btn-sm" onclick="location.href='{{ url_for('asset.update_asset', id=asset.id) }}'" {% if asset.status == 'Assigned' %}disabled{% endif %}>Update</button>
-                <button type="submit" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal{{ asset.id }}" {% if asset.status=='Assigned' %}disabled{% endif %}>Delete</button>
+                <button type="button" class="btn btn-primary btn-sm" onclick="location.href='{{ url_for('asset.update_asset', id=asset.id) }}'" {% if asset.status == 'Assigned' %}disabled{% endif %}>Update Status</button>
+                <button type="submit" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal{{ asset.id }}" {% if asset.status=='Assigned' %}disabled{% endif %}>Delete Asset</button>
 
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal{{ asset.id }}" tabindex="-1" aria-labelledby="exampleModalLabel{{ asset.id }}" aria-hidden="true">
