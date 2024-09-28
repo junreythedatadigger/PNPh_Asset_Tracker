@@ -3,10 +3,9 @@
 {% block title %}Add Item - PNPh Inventory System{% endblock %}
 
 {% block content %}
-<div class="d-flex justify-content-center align-items-center" style="margin:50px">
+<div class="container">
    <form method="POST" action="/assets/add-asset" class="w-100">
-      <fieldset>
-        <legend>Add an Asset</legend>
+        <h2 class="title-margins">Add an Asset</h2>
 
         <!-- Bootstrap Grid: 2 columns on larger screens, 1 column on mobile -->
         <div class="row">
@@ -78,7 +77,6 @@
           </div>
         </div>
         <button type="submit" class="btn btn-primary mt-4">Add Asset</button>
-      </fieldset>
     </form>
 </div>
 {% endblock %}

@@ -3,10 +3,9 @@
 {% block title %}Add User - PNPh Asset Tracker{% endblock %}
 
 {% block content %}
-<div class="d-flex justify-content-center align-items-center" style="margin:50px">
+<div class="container">
    <form method="POST" action="/users/add-user" class="w-100">
-      <fieldset>
-        <legend>Add a User</legend>
+        <h2 class="title-margins">Add a User</h2>
 
         <!-- Bootstrap Grid: 2 columns on larger screens, 1 column on mobile -->
         <div class="row">
@@ -54,28 +53,13 @@
           </div>
 
           <!-- Date Ended -->
-          <div class="col-md-4 mb-3">
+          <div class="col-md-6 mb-3">
             <label for="date_ended" class="form-label mt-4">Date Ended</label>
             <input type="date" class="form-control" id="date_ended" name="date_ended" placeholder="0" autocomplete="off" disabled>
           </div>
         </div>
 
         <button type="submit" class="btn btn-primary mt-4">Add User</button>
-      </fieldset>
     </form>
 </div>
-<script>
-        // Get references to the checkbox and date input
-    const hasEndedCheckbox = document.getElementById('has_ended');
-    const dateEndedInput = document.getElementById('date_ended');
-
-    // Add an event listener to toggle the disabled state of the date input
-    hasEndedCheckbox.addEventListener('change', function() {
-        if (this.checked) {
-            dateEndedInput.removeAttribute('disabled');
-        } else {
-            dateEndedInput.setAttribute('disabled', 'disabled');
-        }
-    });
-</script>
 {% endblock %}
