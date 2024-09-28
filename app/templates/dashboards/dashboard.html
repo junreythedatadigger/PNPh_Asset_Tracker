@@ -4,15 +4,91 @@
 
 {% block content %}
 
-    <h1>Inventory Dashboard</h1>
+<div class="container mt-5">
+    <h2 class="text-center title-margins">Asset Management Dashboard</h2>
 
-    <h2>Category Summary</h2>
-    <p>Total IT Devices: {{ total_it_devices }}</p>
-    <p>Total Office Furniture: {{ total_office_furniture }}</p>
+    <div class="row">
+        <!-- Total Assets Card -->
+        <div class="col-md-3">
+            <div class="card text-white bg-primary mb-3">
+                <div class="card-header">Total Assets</div>
+                <div class="card-body">
+                    <h1 class="card-title">{{ total_assets }}</h1>
+                </div>
+            </div>
+        </div>
 
-    <h2>Status Summary</h2>
-    <p>Available Items: {{ total_available }}</p>
-    <p>Assigned Items: {{ total_assigned }}</p>
-    <p>Unusable Items: {{ total_unusable }}</p>
+        <!-- Total Users Card -->
+        <div class="col-md-3">
+            <div class="card text-white bg-success mb-3">
+                <div class="card-header">Total Users</div>
+                <div class="card-body">
+                    <h1 class="card-title">{{ total_users }}</h1>
+                </div>
+            </div>
+        </div>
+
+        <!-- Available Assets Card -->
+        <div class="col-md-3">
+            <div class="card text-white bg-info mb-3">
+                <div class="card-header">Available Assets</div>
+                <div class="card-body">
+                    <h1 class="card-title">{{ available_assets }}</h1>
+                </div>
+            </div>
+        </div>
+
+        <!-- Unusable Assets Card -->
+        <div class="col-md-3">
+            <div class="card text-white bg-danger mb-3">
+                <div class="card-header">Unusable Assets</div>
+                <div class="card-body">
+                    <h1 class="card-title">{{ unusable_assets }}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pie Chart for Asset Status -->
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <canvas id="assetStatusChart"></canvas>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Data for the pie chart
+    const ctx = document.getElementById('assetStatusChart').getContext('2d');
+    const assetStatusChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['Available', 'Unusable'],
+            datasets: [{
+                label: 'Asset Status',
+                data: [{{ available_assets }}, {{ unusable_assets }}],
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.2)', // Available - Blue
+                    'rgba(255, 99, 132, 0.2)'  // Unusable - Red
+                ],
+                borderColor: [
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 99, 132, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top'
+                }
+            }
+        }
+    });
+</script>
+
+
 {% endblock %}
 
