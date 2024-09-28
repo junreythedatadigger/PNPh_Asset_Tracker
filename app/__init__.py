@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
 
@@ -33,6 +33,11 @@ def create_app():
     app.register_blueprint(issuance, url_prefix='/issuances')
     app.register_blueprint(user, url_prefix='/users')
     app.register_blueprint(dashboard, url_prefix='/dashboard')
+
+    # This will redirect localhost:5000/ to localhost:5000/home
+    @app.route('/')
+    def index():
+        return redirect(url_for('home.home_page'))
 
     # Create the database
     with app.app_context():
