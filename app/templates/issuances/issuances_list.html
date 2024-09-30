@@ -11,10 +11,10 @@
 <div class="container">
     <ul class="nav nav-tabs" role="tablist">
       <li class="nav-item" role="presentation">
-        <a class="nav-link active" data-bs-toggle="tab" href="#active" aria-selected="true" role="tab" tabindex="-1">Active</a>
+        <a class="nav-link active" data-bs-toggle="tab" href="#active" aria-selected="true" role="tab" tabindex="-1">Active <span class="badge bg-primary rounded-pill">{{ active_issuances_count }}</span></a>
       </li>
       <li class="nav-item" role="presentation">
-        <a class="nav-link" data-bs-toggle="tab" href="#returned" aria-selected="false" role="tab">Returned</a>
+        <a class="nav-link" data-bs-toggle="tab" href="#returned" aria-selected="false" role="tab">Returned <span class="badge bg-primary rounded-pill">{{ returned_issuances_count }}</a>
       </li>
     </ul>
     <div id="myTabContent" class="tab-content">

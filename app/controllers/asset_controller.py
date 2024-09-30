@@ -42,14 +42,23 @@ def add_asset():
 @asset.route('/assets-list')
 def assets_list():
     assigned_assets = Asset.query.filter_by(status='Assigned').all()
+    assigned_assets_count = len(assigned_assets)
     available_assets = Asset.query.filter_by(status='Available').all()
+    available_assets_count = len(available_assets)
     unusable_assets = Asset.query.filter_by(status='Unusable').all()
+    unusable_assets_count = len(unusable_assets)
     all_assets = Asset.query.all()
+    all_assets_count = len(all_assets)
     return render_template('assets/assets_list.html',
                            assigned_assets=assigned_assets,
+                           assigned_assets_count=assigned_assets_count,
                            available_assets=available_assets,
+                           available_assets_count=available_assets_count,
                            unusable_assets=unusable_assets,
-                           all_assets=all_assets)
+                           unusable_assets_count=unusable_assets_count,
+                           all_assets=all_assets,
+                           all_assets_count=all_assets_count
+                           )
 
 
 @asset.route('/update-asset/<int:id>', methods=['GET', 'POST'])
