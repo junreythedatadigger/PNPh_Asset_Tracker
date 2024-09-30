@@ -33,7 +33,17 @@ def add_user():
 @user.route('/users-list')
 def users_list():
     users = User.query.all()
-    return render_template('users/users_list.html', users=users)
+    present_users = User.query.filter_by(date_ended=None).all()
+    present_users_count = len(present_users)
+    former_users = User.query.filter(User.date_ended.isnot(None)).all()
+    former_users_count = len(former_users)
+    return render_template('users/users_list.html',
+                           users=users,
+                           present_users=present_users,
+                           present_users_count=present_users_count,
+                           former_users=former_users,
+                           former_users_count=former_users_count
+                           )
 
 
 @user.route('/update-user/<int:id>', methods=['GET', 'POST'])

@@ -4,63 +4,96 @@
 
 {% block content %}
     <div class="container">
-<!--      <div class="text-center">-->
         <h2 class="title-margins">List of Users</h2>
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <th scope="col">Full Name</th>
-              <th scope="col">Role</th>
-              <th scope="col">Position</th>
-              <th scope="col">Department</th>
-              <th scope="col">Date Started</th>
-              <th scope="col"># of Assigned Assets</th>
-              <th scope="col">Date Ended</th>
-              <th scope="col">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for user in users %}
-            <tr class="table-dark">
-              <th scope="row">{{ user.name }}</th>
-              <td>{{ user.role }}</td>
-              <td>{{ user.position }}</td>
-              <td>{{ user.department }}</td>
-              <td>{{ user.date_started }}</td>
-              <td>{{ user.count_asset_assigned }}</td>
-<!--              <td>{{ "Yes" if user.has_ended else "No" }}</td>-->
-              <td>{{ user.date_ended if user.has_ended else "N/A" }}</td>
-              <td>
-                <button type="button" class="btn btn-primary btn-sm" onclick="location.href='{{ url_for('user.update_user', id=user.id) }}'" {% if user.date_ended != None or user.count_asset_assigned != 0 %}disabled{% endif %}>End Contract</button>
-                <button type="submit" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal{{ user.id }}" {% if user.date_ended != None or user.count_asset_assigned != 0 %}disabled{% endif %}>Delete User</button>
 
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal{{ user.id }}" tabindex="-1" aria-labelledby="exampleModalLabel{{ user.id }}" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel{{ user.id }}">Warning</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                Are you sure you want to delete this user?
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                <form action="{{ url_for('user.delete_user', id=user.id) }}" method="POST" style="display:inline;">
-                                  <button type="submit" class="btn btn-primary">Delete</button>
-                                </form>
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="nav-item" role="presentation">
+            <a class="nav-link active" data-bs-toggle="tab" href="#present" aria-selected="true" role="tab" tabindex="-1">Present <span class="badge bg-primary rounded-pill">{{ present_users_count }}</span></a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" data-bs-toggle="tab" href="#former" aria-selected="false" role="tab">Former <span class="badge bg-primary rounded-pill">{{ former_users_count }}</a>
+          </li>
+        </ul>
+        <div id="myTabContent" class="tab-content">
+          <div class="tab-pane tab-pane-margins fade active show" id="present" role="tabpanel">
+              <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">Full Name</th>
+                      <th scope="col">Role</th>
+                      <th scope="col">Position</th>
+                      <th scope="col">Department</th>
+                      <th scope="col"># of Assigned Assets</th>
+                      <th scope="col">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for user in present_users %}
+                    <tr class="table-dark">
+                      <th scope="row">{{ user.name }}</th>
+                      <td>{{ user.role }}</td>
+                      <td>{{ user.position }}</td>
+                      <td>{{ user.department }}</td>
+                      <td>{{ user.count_asset_assigned }}</td>
+                      <td>
+                        <button type="button" class="btn btn-primary btn-sm" onclick="location.href='{{ url_for('user.update_user', id=user.id) }}'" {% if user.date_ended != None or user.count_asset_assigned != 0 %}disabled{% endif %}>End Contract</button>
+                        <button type="submit" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal{{ user.id }}" {% if user.date_ended != None or user.count_asset_assigned != 0 %}disabled{% endif %}>Delete User</button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal{{ user.id }}" tabindex="-1" aria-labelledby="exampleModalLabel{{ user.id }}" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel{{ user.id }}">Warning</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure you want to delete this user?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                        <form action="{{ url_for('user.delete_user', id=user.id) }}" method="POST" style="display:inline;">
+                                          <button type="submit" class="btn btn-primary">Delete</button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-              </td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+
+          </div>
+          <div class="tab-pane tab-pane-margins fade" id="former" role="tabpanel">
+              <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">Full Name</th>
+                      <th scope="col">Role</th>
+                      <th scope="col">Position</th>
+                      <th scope="col">Department</th>
+                      <th scope="col">Date Started</th>
+                      <th scope="col">Date Ended</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for user in former_users %}
+                    <tr class="table-dark">
+                      <th scope="row">{{ user.name }}</th>
+                      <td>{{ user.role }}</td>
+                      <td>{{ user.position }}</td>
+                      <td>{{ user.department }}</td>
+                      <td>{{ user.date_started }}</td>
+                      <td>{{ user.date_ended if user.has_ended else "N/A" }}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+          </div>
+        </div>
       </div>
-<!--    </div>-->
     <div class="text-center text-bottom">
         <button type="button" class="btn btn-primary" onclick="location.href='{{ url_for('user.add_user') }}'">Add a User</button>
     </div>
