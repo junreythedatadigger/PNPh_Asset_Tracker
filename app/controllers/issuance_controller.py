@@ -16,6 +16,11 @@ def add_issuance():
         date_returned = None
         remarks_on_returning = None
 
+        if not remarks_on_issuance:
+            remarks_on_issuance = None
+
+        print(remarks_on_issuance)
+
         # Update asset status to assigned
         asset = Asset.query.get_or_404(asset_id)
         asset.status = "Assigned"
@@ -61,6 +66,9 @@ def update_issuance(id):
     if request.method == 'POST':
         issuance.date_returned = format_date(request.form['date_returned'])
         issuance.remarks_on_returning = request.form['remarks_on_returning']
+
+        if not issuance.remarks_on_returning:
+            issuance.remarks_on_returning = None
 
         # Update asset status to available upon returning
         asset = Asset.query.get_or_404(issuance.asset.id)
