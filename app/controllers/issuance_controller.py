@@ -48,8 +48,11 @@ def add_issuance():
 
 @issuance.route('/issuances-list')
 def issuances_list():
-    issuances = Issuance.query.all()
-    return render_template('issuances/issuances_list.html', issuances=issuances)
+    active_issuances = Issuance.query.filter_by(date_returned=None).all()
+    returned_issuances = Issuance.query.filter(Issuance.date_returned.isnot(None)).all()
+    return render_template('issuances/issuances_list.html',
+                           active_issuances=active_issuances,
+                           returned_issuances=returned_issuances)
 
 
 @issuance.route('/update-issuance/<int:id>', methods=['GET', 'POST'])
