@@ -15,11 +15,13 @@ def add_asset():
         model = request.form['model']
         serial_number = request.form['serial_number']
         price = request.form['price']
-        purchase_date = request.form['purchase_date']
+        purchase_date = request.form.get('purchase_date')
         status = 'Available' # default value for status
 
         if purchase_date:
             purchase_date = format_date(purchase_date)
+        else:
+            purchase_date = None
 
         new_asset = Asset(asset_name=asset_name,
                           category=category,
@@ -39,8 +41,15 @@ def add_asset():
 
 @asset.route('/assets-list')
 def assets_list():
-    assets = Asset.query.all()
-    return render_template('assets/assets_list.html', assets=assets)
+    assigned_assets = Asset.query.filter_by(status='Assigned').all()
+    available_assets = Asset.query.filter_by(status='Available').all()
+    unusable_assets = Asset.query.filter_by(status='Unusable').all()
+    all_assets = Asset.query.all()
+    return render_template('assets/assets_list.html',
+                           assigned_assets=assigned_assets,
+                           available_assets=available_assets,
+                           unusable_assets=unusable_assets,
+                           all_assets=all_assets)
 
 
 @asset.route('/update-asset/<int:id>', methods=['GET', 'POST'])

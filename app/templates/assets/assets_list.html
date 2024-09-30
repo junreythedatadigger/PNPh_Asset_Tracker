@@ -3,66 +3,167 @@
 {% block title %}Inventory - PNPh Inventory System{% endblock %}
 
 {% block content %}
-    <div class="container">
-        <h2 class="title-margins">List of Assets</h2>
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <th scope="col">Asset Name</th>
-              <th scope="col">Category</th>
-              <th scope="col">Type</th>
-              <th scope="col">Model</th>
-              <th scope="col">Serial Number</th>
-              <th scope="col">Price</th>
-              <th scope="col">Purchase Date</th>
-              <th scope="col">Status</th>
-              <th scope="col">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for asset in assets %}
-            <tr class="table-dark">
-              <th scope="row">{{ asset.asset_name }}</th>
-              <td>{{ asset.category }}</td>
-              <td>{{ asset.type }}</td>
-              <td>{{ asset.model }}</td>
-              <td>{{ asset.serial_number }}</td>
-              <td>{{ asset.price }}</td>
-              <td>{{ asset.purchase_date }}</td>
-              <td>{{ asset.status }}</td>
-              <td>
-                <button type="button" class="btn btn-primary btn-sm" onclick="location.href='{{ url_for('asset.update_asset', id=asset.id) }}'" {% if asset.status == 'Assigned' %}disabled{% endif %}>Update Status</button>
-                <button type="submit" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal{{ asset.id }}" {% if asset.status=='Assigned' %}disabled{% endif %}>Delete Asset</button>
+<div class="container">
+    <h2 class="title-margins">List of Assets</h2>
 
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal{{ asset.id }}" tabindex="-1" aria-labelledby="exampleModalLabel{{ asset.id }}" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel{{ asset.id }}">Warning</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                Are you sure you want to delete this asset?
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                <form action="{{ url_for('asset.delete_asset', id=asset.id) }}" method="POST" style="display:inline;">
-                                  <button type="submit" class="btn btn-primary">Delete</button>
-                                </form>
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <a class="nav-link active" data-bs-toggle="tab" href="#assigned" aria-selected="true" role="tab" tabindex="-1">Assigned</a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link" data-bs-toggle="tab" href="#available" aria-selected="false" role="tab">Available</a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link" data-bs-toggle="tab" href="#unusable" aria-selected="false" role="tab">Unusable</a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link" data-bs-toggle="tab" href="#all" aria-selected="false" role="tab">All Assets</a>
+      </li>
+
+    </ul>
+    <div id="myTabContent" class="tab-content">
+      <div class="tab-pane tab-pane-margins fade active show" id="assigned" role="tabpanel">
+          <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Asset Name</th>
+                  <th scope="col">Category</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Model</th>
+                  <th scope="col">Serial Number</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for asset in assigned_assets %}
+                <tr class="table-dark">
+                  <th scope="row">{{ asset.asset_name }}</th>
+                  <td>{{ asset.category }}</td>
+                  <td>{{ asset.type }}</td>
+                  <td>{{ asset.model }}</td>
+                  <td>{{ asset.serial_number }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+          </table>
+
+      </div>
+      <div class="tab-pane tab-pane-margins fade" id="available" role="tabpanel">
+          <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Asset Name</th>
+                  <th scope="col">Category</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Model</th>
+                  <th scope="col">Serial Number</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for asset in available_assets %}
+                <tr class="table-dark">
+                  <th scope="row">{{ asset.asset_name }}</th>
+                  <td>{{ asset.category }}</td>
+                  <td>{{ asset.type }}</td>
+                  <td>{{ asset.model }}</td>
+                  <td>{{ asset.serial_number }}</td>
+                  <td>
+                    <button type="button" class="btn btn-primary btn-sm" onclick="location.href='{{ url_for('asset.update_asset', id=asset.id) }}'" {% if asset.status == 'Assigned' %}disabled{% endif %}>Update Status</button>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+          </table>
+      </div>
+      <div class="tab-pane tab-pane-margins fade" id="unusable" role="tabpanel">
+          <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Asset Name</th>
+                  <th scope="col">Category</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Model</th>
+                  <th scope="col">Serial Number</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for asset in unusable_assets %}
+                <tr class="table-dark">
+                  <th scope="row">{{ asset.asset_name }}</th>
+                  <td>{{ asset.category }}</td>
+                  <td>{{ asset.type }}</td>
+                  <td>{{ asset.model }}</td>
+                  <td>{{ asset.serial_number }}</td>
+                  <td>
+                    <button type="button" class="btn btn-primary btn-sm" onclick="location.href='{{ url_for('asset.update_asset', id=asset.id) }}'" {% if asset.status == 'Assigned' %}disabled{% endif %}>Update Status</button>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+          </table>
+      </div>
+      <div class="tab-pane tab-pane-margins fade" id="all" role="tabpanel">
+          <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Asset Name</th>
+                  <th scope="col">Category</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Model</th>
+                  <th scope="col">Serial Number</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Purchase Date</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for asset in all_assets %}
+                <tr class="table-dark">
+                  <th scope="row">{{ asset.asset_name }}</th>
+                  <td>{{ asset.category }}</td>
+                  <td>{{ asset.type }}</td>
+                  <td>{{ asset.model }}</td>
+                  <td>{{ asset.serial_number }}</td>
+                  <td>{{ asset.price }}</td>
+                  <td>{{ asset.purchase_date }}</td>
+                  <td>{{ asset.status }}</td>
+                  <td>
+                    <button type="submit" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal{{ asset.id }}" {% if asset.status=='Assigned' %}disabled{% endif %}>Delete Asset</button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal{{ asset.id }}" tabindex="-1" aria-labelledby="exampleModalLabel{{ asset.id }}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel{{ asset.id }}">Warning</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to delete this asset?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <form action="{{ url_for('asset.delete_asset', id=asset.id) }}" method="POST" style="display:inline;">
+                                      <button type="submit" class="btn btn-primary">Delete</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-              </td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+          </table>
+
       </div>
-<!--    </div>-->
+    </div>
+
     <div class="text-center text-bottom">
         <button type="button" class="btn btn-primary" onclick="location.href='{{ url_for('asset.add_asset') }}'">Add an Asset</button>
     </div>
+</div>
 
 {% endblock %}
