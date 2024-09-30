@@ -1,7 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from ..models import Issuance, Asset, User
 from .. import db
-import datetime
 from ..utils import format_date
 
 issuance = Blueprint('issuance', __name__)
@@ -13,7 +12,9 @@ def add_issuance():
         asset_id = request.form['asset_id']
         user_id = request.form['user_id']
         date_issued = format_date(request.form['date_issued'])
+        remarks_on_issuance = request.form.get('remarks_on_issuance')
         date_returned = None
+        remarks_on_returning = None
 
         # Update asset status to assigned
         asset = Asset.query.get_or_404(asset_id)
@@ -26,7 +27,9 @@ def add_issuance():
         new_issuance = Issuance(asset_id=asset_id,
                                 user_id=user_id,
                                 date_issued=date_issued,
-                                date_returned=date_returned
+                                remarks_on_issuance=remarks_on_issuance,
+                                date_returned=date_returned,
+                                remarks_on_returning=remarks_on_returning
                                 )
 
         try:
@@ -54,6 +57,7 @@ def update_issuance(id):
     issuance = Issuance.query.get_or_404(id)
     if request.method == 'POST':
         issuance.date_returned = format_date(request.form['date_returned'])
+        issuance.remarks_on_returning = request.form['remarks_on_returning']
 
         # Update asset status to available upon returning
         asset = Asset.query.get_or_404(issuance.asset.id)

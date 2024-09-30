@@ -7,6 +7,8 @@
     <h2 class="title-margins">Add a New Issuance</h2>
     <form method="POST" action="/issuances/add-issuance">
         <div class="row">
+
+            <!-- Asset Name-->
             <div class="col-md-6 mb-3">
                 <label for="asset_id" class="form-label">Select Asset</label>
                 <select class="form-select" id="asset_id" name="asset_id">
@@ -16,6 +18,7 @@
                 </select>
             </div>
 
+            <!-- Assigned to-->
             <div class="col-md-6 mb-3">
                 <label for="user_id" class="form-label">Select User</label>
                 <select class="form-select" id="user_id" name="user_id">
@@ -26,13 +29,31 @@
             </div>
         </div>
         <div class="row">
+
+            <!-- Date Issued -->
             <div class="col-md-6 mb-3">
                 <label for="date_issued" class="form-label mt-4">Date Issued</label>
                 <input type="date" class="form-control" id="date_issued" name="date_issued" autocomplete="off">
             </div>
+
+            <!-- Remarks on Issuance -->
+            <div class="col-md-6 mb-3">
+                <label for="remarks_on_issuance" class="form-label mt-4">Remarks on Issuance</label>
+                <textarea class="form-control" id="remarks_on_issuance" name="remarks_on_issuance" rows="1"></textarea>
+            </div>
+        </div>
+        <div class="row">
+
+            <!-- Date Returned -->
             <div class="col-md-6 mb-3">
                 <label for="date_returned" class="form-label mt-4">Date Returned</label>
-                <input type="date" class="form-control" id="date_returned" name="date_returned" autocomplete="off" disabled>
+                <input type="date" class="form-control" id="date_returned" name="date_returned" disabled>
+            </div>
+
+            <!-- Remarks on Returning -->
+            <div class="col-md-6 mb-3">
+                <label for="remarks_on_returning" class="form-label mt-4">Remarks on Returning</label>
+                <textarea class="form-control" id="remarks_on_returning" name="remarks_on_returning" rows="1" disabled></textarea>
             </div>
         </div>
         <button type="submit" class="btn btn-primary">Add Issuance</button>
